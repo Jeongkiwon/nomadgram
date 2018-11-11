@@ -39,7 +39,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://localhost/nomadgram'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nomadgram',
+        'USER': 'postgres',
+        'PASSWORD': '1203658a',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
@@ -63,14 +70,17 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
-    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'taggit',
 ]
 LOCAL_APPS = [
     'nomadgram.users.apps.UsersAppConfig',
+    'nomadgram.images.apps.ImagesConfig',
+    'nomadgram.notifications.apps.NotificationsConfig',
+
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -238,3 +248,4 @@ SOCIALACCOUNT_ADAPTER = 'nomadgram.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSTIVE=True
