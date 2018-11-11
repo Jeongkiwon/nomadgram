@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-#adad
+#check
 app_name = "notifications"
 urlpatterns = [
     path(
