@@ -82,6 +82,18 @@ class CommentOnImage(APIView):
         else:
             return Response(data=serializer.errors, status=404)
        
+class ModerateComment(APIView):
+    def delete(self, request,image_id, comment_id, format=None):
+        user=request.user
+        
+        try:
+            comment_to_delete=models.Comment.objects.get(
+                id=comment_id, image__id=image_id, image__creator=user)
+            comment_to_delete.delete()
+        except models.Comment.DoesNotExist:
+            return Response(status=404)
+
+        return Response(status=204)
 
 class Comment(APIView):
     def delete(self,request,comment_id,format=None):
