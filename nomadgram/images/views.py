@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models, serializers
+from nomadgram.users import models as user_modes
+from nomadgram.users import serializers as user_serializers
 from nomadgram.notifications import views as notification_views
 
 class Feed(APIView):
@@ -16,16 +18,21 @@ class Feed(APIView):
             for image in user_images:
                 image_list.append(image)
 
+        my_images=user.images.all()[:2]
+        for image in my_images:
+            image_list.append(image)
+
         sorted_list = sorted(image_list, key=lambda image:image.created_at, reverse=True)
-
-        
-
         serializer = serializers.ImageSerializer(sorted_list,many=True)
 
         return Response(serializer.data)
 
 
 class LikeImage(APIView):
+    def get(self, request, image_id, format=None):
+        likes=models.Like.objects.filter(image__id=image_id)
+
+
     def post(self, request, image_id, format=None):
 
         user= request.user
@@ -90,6 +97,7 @@ class ModerateComment(APIView):
             comment_to_delete=models.Comment.objects.get(
                 id=comment_id, image__id=image_id, image__creator=user)
             comment_to_delete.delete()
+        
         except models.Comment.DoesNotExist:
             return Response(status=404)
 
@@ -118,3 +126,14 @@ class Search(APIView):
             return Response(data=serializer.data, status=200)
         else:
             return Response(status=400)
+
+class ImageDetail(APIView):
+    def get(self, request, image_id, format=None):
+        user=request.user
+        try:
+            image=models.Image.objects.get(id=image_id )
+        except models.Image.DoesNotExist:
+            return Response(status=404)
+        
+        serializer = serializers.ImageSerializer(image)
+        return Response(data=serializer.data, status=200)

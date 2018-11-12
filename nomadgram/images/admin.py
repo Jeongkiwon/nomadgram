@@ -5,6 +5,7 @@ from . import models
 @admin.register(models.Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display=(
+        'id',
         'file',
         'location',
         'creator',
@@ -16,6 +17,7 @@ class ImageAdmin(admin.ModelAdmin):
 @admin.register(models.Like)
 class LikeAdmin(admin.ModelAdmin):
     list_display=(
+        'id',
         'creator',
         'image',
         'created_at',
@@ -25,6 +27,7 @@ class LikeAdmin(admin.ModelAdmin):
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display=(
+        'id',
         'message',
         'creator',
         'image',
