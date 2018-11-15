@@ -1,4 +1,5 @@
-
+<html>
+    <body>
             <h1>Nomadgram</h1>
             <h2>Instagram clone with python and javascript</h2>
 
@@ -75,3 +76,7 @@
                 </li>
             </ul>      
              <h3>settings</h3>
+    
+    
+    </body>
+</html>
