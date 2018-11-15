@@ -1,8 +1,8 @@
 <h1>Nomadgram</h1>
-        <h3>Instagram clone with python and javascript</h3>
+        <h2>Instagram clone with python and javascript</h2>
         <ul>
             <li>
-                <h4>requirement</h4>
+                <h3>requirement</h3>
                 <ul>
                     <li>setting: cookiecutter, pipenv, install requirement</li>
                     <li>server: python3.0, django2.0, postgreSQL9.6</li>
@@ -69,4 +69,4 @@
                         android studio: 안드로이드 스튜디오는 우리가 만든 앱을 테스트하기 위해 사용합니다.
                         가상의 휴대폰 화면을 띄운 시뮬레이터를 활용할 수 있습니다.
                         
-                   
+         <h3>settings</h3>
