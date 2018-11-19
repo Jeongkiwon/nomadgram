@@ -94,7 +94,12 @@
                      넣는 폴더입니다. <b>django-admin startapp 앱이름</b> 명령어를 통해 만든 폴더가 여기에 저장됩니다.
                      우리가 만들 인스타그램은 이미지와 관련된 기능을 담는 images앱, 사용자와 관련된 기능을 담는 users앱
                      알람 기능을 담는 notifications앱 등이 있습니다.
-                     더불어 templates폴더도 생성되는데 이 폴더는 서버 설계가 끝난 뒤 프론트를 제작할 공간입니다. 
+                     더불어 templates폴더도 생성되는데 이 폴더는 서버 설계가 끝난 뒤 프론트를 제작할 공간입니다.
                  </li>
                  우리는 config와 nomadgram 두 폴더에 있는 파일의 내용을 바꾸어 프로젝트를 완성할 것입니다.
              </ul>
+             <h3>nomadgram structure</h3>
+             <ul>
+                        <li>
+                        </li>
+            </ul>
