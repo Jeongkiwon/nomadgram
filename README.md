@@ -1,5 +1,6 @@
 <h1>Nomadgram</h1>
             <h2>Instagram clone with python and javascript</h2>
+             <p>It is not python(django) or javascript(react) tutorial. It just description of my project that cloning Instagram </p>
             <ul>
                 <li>
                     <h3>requirement</h3>
@@ -98,8 +99,51 @@
                  </li>
                  우리는 config와 nomadgram 두 폴더에 있는 파일의 내용을 바꾸어 프로젝트를 완성할 것입니다.
              </ul>
-             <h3>nomadgram structure</h3>
-             <ul>
-                        <li>
-                        </li>
+             <h3>Model</h3>
+            <h4>image</h4>
+            <ul>
+                <li>Image: SNS에 포스팅하는 글에 들어있는 정보들을 모델링합니다. 인스타그램의 글에는 장소, 이미지, 글쓴이, 글, 해쉬태그 가있습니다.
+                이 중에 글쓴이라는 요소는 users앱에 있는 모델의 것입니다. 이를 위해 foreign key를 사용합니다.</li>
+                <li>Comment: 댓글에는 댓글을 쓴 사용자와 댓글 내용이 있습니다. 더불어 이 댓글은 어느 글과 연관이 됩니다. 글이 없다면 댓글도 없죠.
+                그렇기 때문에 image를 foreign key로 가지고 있습니다.</li>
+                <li>Like: 좋아요는 좋아요를 누른 사람의 이름을 가지고 있습니다. 더불어 댓글과 같이 글이 없다면 좋아요도 없죠.
+                그렇기 때문에 user와 image를 foreign key로 가지고 있습니다.</li>
             </ul>
+            <h4>users</h4>
+            <ul>
+                <li>User: 사용자 모델에는 사용자의 정보에 대한 다양한 정보들이 있습니다. 사용자의 이름, 성별, 이메일, 비밀번호 등등을 모델링해둡시다.
+                </li>
+            </ul>
+            <h3>API</h3>
+            <p>인스타그램에 꼭 필요한 글과 사용자라는 모델을 설계했다면 이제 글 생성, 팔로우 등록 등 필요한 기능들을 설계해야합니다.
+            저는 보통 필요한 기능을 설계하기위해서 trello라는 앱에 기능들을 하나하나 체크리스트로 작성해 놓습니다. 이후 하나의 기능을 
+            설계하고 나면 체크해놓고 API설계의 진행속도를 확인합니다.
+            </p>
+            <h4>필요한 기능</h4>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <h3>Making views.py&urls.py for API</h3>
+            <p>필요한 기능인 API를 설계하기 위해서 django는 views.py와 urls.py을 제공합니다. urls.py는 사용자에게 입력받은 url을 표준화 시킨
+            것이며 우리는 views.py에 실제 기능을 python 문법을 통해 class, function 등으로 구현하고 urls와 연결합니다.
+            이를 통해 사용자는 url을 입력하는 것으로 우리가 구현한 서비스(글쓰기, 댓글쓰기 등)를 사용할 수 있습니다.
+            </p>
+            <h4>views.py</h4>
+            <p>View를 작성할 때 저는 보통 클래스를 기반으로 작성합니다. 이는 함수를 기반으로 작성하는 것 보다 더 간결한 문법을 가지기 때문입니다.
+            </p>
+            <h4>urls.py</h4>
+            <p>urls는 django2.0부터 path라는 개념을 적용합니다. 이는 이전의 정규화표현으로 url의 패턴을 구현한 것과 달리
+            좀 더 개발자가 이해하기 쉬운 방법인 int, string, user_name 등의 시맨틱한 urls구현을 도와줍니다.
+            </p>
+            <h3>Serializer</h3>
+            <p>글 목록, 팔로워 목록 등은 사용자들에게 정보를 눈에 보여줍니다. 이는 서버에서 사용자를 위해 제공해주는 정보입니다.
+             이를 위해 우리는 serializer를 사용합니다. 이는 우리의 서버는 파이썬이고 클라이언트는 자바스크립트이기 때문에 필요한 작업입니다.
+             views에서 글 목록을 제공하는 기능을 구현했다면 마지막에 글목록을 return 할 것입니다.
+             그 전에 serializer 작업을 하는 것입니다. 우리는 users라는 모델의 name, age만 출력하고 싶다면 이 두 정보만 제공하는 serializer를 만들어
+             users를 가공해서 return해주는 것입니다.
+             </p>
