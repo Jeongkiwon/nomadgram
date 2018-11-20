@@ -127,7 +127,6 @@
                 <li></li>
                 <li></li>
             </ul>
-
             <h3>Making views.py&urls.py for API</h3>
             <p>필요한 기능인 API를 설계하기 위해서 django는 views.py와 urls.py을 제공합니다. urls.py는 사용자에게 입력받은 url을 표준화 시킨
             것이며 우리는 views.py에 실제 기능을 python 문법을 통해 class, function 등으로 구현하고 urls와 연결합니다.
