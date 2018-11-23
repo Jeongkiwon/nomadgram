@@ -120,13 +120,7 @@
             설계하고 나면 체크해놓고 API설계의 진행속도를 확인합니다.
             </p>
             <h4>필요한 기능</h4>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+            <p>피드, 글쓰기, 글삭제, 글수정, 댓글, 좋아요, 해쉬태그, 팔로우, 언팔로우, 탐색, 개인프로필, 회원가입, 로그인, 로그아웃</p>
             <h3>Making views.py&urls.py for API</h3>
             <p>필요한 기능인 API를 설계하기 위해서 django는 views.py와 urls.py을 제공합니다. urls.py는 사용자에게 입력받은 url을 표준화 시킨
             것이며 우리는 views.py에 실제 기능을 python 문법을 통해 class, function 등으로 구현하고 urls와 연결합니다.
