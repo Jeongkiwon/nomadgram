@@ -120,6 +120,7 @@ class Comment(APIView):
             return Response(status=404)
 
 class Search(APIView):
+        
     def get(self, request, format=None):
         hashtags= request.query_params.get('hashtags',None)
 
@@ -134,6 +135,13 @@ class Search(APIView):
             return Response(status=400)
 
 class ImageDetail(APIView):
+    def find_own_image(self,image_id, user):
+        try:
+            image=models.Image.objects.get(id=image_id, creator=user )
+            return image
+        except models.Image.DoesNotExist:
+            return None
+
     def get(self, request, image_id, format=None):
         user=request.user
         try:
@@ -146,15 +154,26 @@ class ImageDetail(APIView):
 
     def put(self, request, image_id, format=None):
         user=request.user
-        try:
-            image=models.Image.objects.get(id=image_id, creator=user )
-        except models.Image.DoesNotExist:
+       
+        image=self.find_own_image(image_id, user)
+        if image is None:
             return Response(status=401)
+
         serializer = serializers.InputImageSerializer(image, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save(creator=user,)
 
             return Response(data=serializer.data, status=204)
-        else 
+        else:
             return Response(data=serializer.errors, status=400)
+
+    def delete(self, request, image_id, format=None):
+        user=request.user
+        image=self.find_own_image(image_id, user)
+
+        if image is None:
+            return Response(status=401)
+            
+        image.delete()
+        return Response(status=204)
