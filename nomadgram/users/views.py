@@ -107,3 +107,25 @@ class UserFollowing(APIView):
         serializer=serializers.ListUserSerializer(user_following, many=True)
         return Response(data=serializer.data, status=200)
 
+class ChangePassword(APIView):
+    def put(self, request, username, format=None):
+        user=user.request.user
+
+        if user.username == username:
+            current_password=request.data.get('current_password', None)
+            if current_password is not None:
+                passwords_match=user.check_password(current_password)
+                if passwords_match:
+                    new_password=request.data.get('new_password',None)
+                    if new_password is not None:
+                        user.set_password(new_password)
+                        user.save()
+                        return Response(status=200)
+                    else:
+                        return Response(status=400)
+                else:
+                    return Response(status=400)
+            else:
+                return Response(status=400)
+        else:
+            return Response(status=401)
